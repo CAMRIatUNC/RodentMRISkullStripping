@@ -16,7 +16,7 @@ def out_LabelHot_map_2D(img, seg_net, pre_paras, keras_paras):
     counter_map = np.zeros((length,col,row), dtype=np.float32)
     length_step = int(patch_dims[0]/2)
 
-    """-----predict the whole image from two directions, small to large and large to small----"""
+    """-----predict the whole space from two directions, small to large and large to small----"""
     for i in range(0, length-patch_dims[0]+1, strides[0]):
         for j in range(0, col-patch_dims[1]+1, strides[1]):
             for k in range(0, row-patch_dims[2]+1, strides[2]):

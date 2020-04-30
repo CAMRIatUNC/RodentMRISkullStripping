@@ -13,7 +13,7 @@ __version__ = re.search(
     ).group(1)
 
 __author__ = 'Not specified yet'
-__email__ = '@'
+__email__ = ''
 __maintainer__ = 'SungHo Lee'
 __maintainer_email__ = 'shlee@unc.edu'
 __url__ = ''
