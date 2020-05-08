@@ -53,7 +53,7 @@ def main():
     input_path = args.input
     output_path = args.output
 
-    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
     # Default Parameters Preparation
     pre_paras = PreParas()
