@@ -1,4 +1,4 @@
-% Rat Brain-mask Segmentation tool
+% Rodent Brain-mask Segmentation tool
 
 
 Detail description: 

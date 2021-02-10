@@ -20,7 +20,7 @@ __url__ = ''
 
 setup(name='rbm',
       version=__version__,
-      description='Rat Brain Masking Tool with Keras 2D Unet',
+      description='Rodent Brain Masking Tool with Keras 2D Unet',
       python_requires='>3.5, <3.8',
       author=__author__,
       author_email=__email__,
@@ -43,11 +43,11 @@ setup(name='rbm',
           ],
       },
       classifiers=[
-            'Development Status :: 3 - Alpha',
+            'Development Status :: 5 - Production/Stable',
             'Intended Audience :: Science/Research',
             'Topic :: Scientific/Engineering :: Medical Science Apps.',
             'Natural Language :: English',
             'Programming Language :: Python :: 3.7'
       ],
-      keywords = 'rat fMRI brain masking'
+      keywords = 'rodent brain masking'
      )
