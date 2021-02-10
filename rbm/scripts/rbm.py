@@ -56,24 +56,27 @@ def main():
     output_path = args.output
     voxsize = args.voxsize
 
-    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+    if input_path is None:
+        parser.print_usage()
+    else:
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-    # Default Parameters Preparation
-    pre_paras = PreParas()
-    pre_paras.patch_dims = [1, 128, 128]
-    pre_paras.patch_label_dims = [1, 128, 128]
-    pre_paras.patch_strides = [1, 32, 32]
-    pre_paras.n_class = 2
+        # Default Parameters Preparation
+        pre_paras = PreParas()
+        pre_paras.patch_dims = [1, 128, 128]
+        pre_paras.patch_label_dims = [1, 128, 128]
+        pre_paras.patch_strides = [1, 32, 32]
+        pre_paras.n_class = 2
 
-    # Parameters for Keras model
-    keras_paras = KerasParas()
-    keras_paras.outID = 0
-    keras_paras.thd = 0.5
-    keras_paras.loss = 'dice_coef_loss'
-    keras_paras.img_format = 'channels_last'
-    keras_paras.model_path = os.path.join(os.path.dirname(__file__), 'rat_brain-2d_unet.hdf5')
+        # Parameters for Keras model
+        keras_paras = KerasParas()
+        keras_paras.outID = 0
+        keras_paras.thd = 0.5
+        keras_paras.loss = 'dice_coef_loss'
+        keras_paras.img_format = 'channels_last'
+        keras_paras.model_path = os.path.join(os.path.dirname(__file__), 'rat_brain-2d_unet.hdf5')
 
-    brain_seg_prediction(input_path, output_path, voxsize, pre_paras, keras_paras)
+        brain_seg_prediction(input_path, output_path, voxsize, pre_paras, keras_paras)
 
 
 if __name__ == '__main__':
