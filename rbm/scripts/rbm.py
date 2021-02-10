@@ -10,7 +10,7 @@ import numpy as np
 import argparse
 
 
-def brain_seg_prediction(input_path, output_path,
+def brain_seg_prediction(input_path, output_path, voxsize,
                          pre_paras, keras_paras):
     # load model
     seg_net = load_model(keras_paras.model_path,
@@ -19,9 +19,9 @@ def brain_seg_prediction(input_path, output_path,
 
     imgobj = sitk.ReadImage(input_path)
 
-    # re-sample to 0.1x0.1x0.1
+    # re-sample to given voxel size
     resampled_imgobj = resample_img(imgobj,
-                                    new_spacing=[0.1, 0.1, 0.1],
+                                    new_spacing=[voxsize, voxsize, voxsize],
                                     interpolator=sitk.sitkLinear)
 
     img_array = sitk.GetArrayFromImage(resampled_imgobj)
@@ -44,14 +44,17 @@ def brain_seg_prediction(input_path, output_path,
 
 def main():
     parser = argparse.ArgumentParser(prog='rbm',
-                                     description="Command line tool for Rat Brain Masking with 2D Unet.")
+                                     description="Command line tool for Rodent Brain Masking with 2D Unet.")
     parser.add_argument("-v", "--version", action='version', version='%(prog)s v{}'.format(__version__))
+    parser.add_argument("-s", "--voxsize", help='voxel size to be resampled, default = 0.1 for rats',
+                        type=float, default=0.1)
     parser.add_argument("input", help="The NifTi1 file of rat brain MRI (T2w or EPI)", type=str)
     parser.add_argument("output", help="The destination for brain mask", type=str)
     args = parser.parse_args()
 
     input_path = args.input
     output_path = args.output
+    voxsize = args.voxsize
 
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -70,7 +73,7 @@ def main():
     keras_paras.img_format = 'channels_last'
     keras_paras.model_path = os.path.join(os.path.dirname(__file__), 'rat_brain-2d_unet.hdf5')
 
-    brain_seg_prediction(input_path, output_path, pre_paras, keras_paras)
+    brain_seg_prediction(input_path, output_path, voxsize, pre_paras, keras_paras)
 
 
 if __name__ == '__main__':
