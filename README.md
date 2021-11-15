@@ -18,6 +18,6 @@ ex: conda install -c conda-forge scikit-image
 
 Instruction:
 1) install RodentMRISKullStripping
-'pip install rmb'
+'pip install rbm'
 2) Give the input and output folder, you should put all the image in NIfTI format in the input folder .
 'rbm <input> <output>'
