@@ -20,4 +20,5 @@ Instruction:
 1) install RodentMRISKullStripping
 'pip install rbm'
 2) Give the input and output folder, you should put all the image in NIfTI format in the input folder .
-'rbm <input> <output>'
+'rbm -s 0.01 <input> <output>'
+-s: resample resolution (0.05 or 0.01)
